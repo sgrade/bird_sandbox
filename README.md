@@ -8,9 +8,9 @@ Git clone locally
 
 ### Work in Visual Studio Code -> Devcontainer
 
-Open the cloned folder in VScode.
+Open the cloned folder in VS Code.
 
-When prompted by vscode, reopen in devcontainer. If you are new to devcontainers, read [here](https://code.visualstudio.com/docs/remote/containers).
+When prompted by VS Code, reopen in devcontainer. If you are new to devcontainers, read [here](https://code.visualstudio.com/docs/remote/containers).
 
 Work from the vscode embedded terminal(s). It is not mandatory, but just easier: 
 
