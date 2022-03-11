@@ -1,0 +1,17 @@
+---
+- name: Ensure that Linux user/group (bird/bird) exist
+  import_tasks: ensure_user_group.yml
+
+- name: Copy the files to run bird as a service
+  import_tasks: copy_files.yml
+
+- name: Download and build BIRD from source code
+  import_tasks: build_from_source.yml
+
+# TODO: 
+# - backup existing bird.conf (if exists)
+# - restore the backup if replaced by the installer
+# - reload bird.service (notify the handler)
+
+- name: Run tests to make sure BIRD installation is successful
+  import_tasks: tests.yml

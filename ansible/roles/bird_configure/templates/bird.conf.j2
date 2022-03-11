@@ -1,0 +1,52 @@
+# Configure logging
+log syslog all;
+# log "/var/log/bird.log" { debug, trace, info, remote, warning, error, auth, fatal, bug };
+
+# Set router ID. It is a unique identification of your router, usually one of
+# IPv4 addresses of the router. It is recommended to configure it explicitly.
+router id 10.0.10{{ tags.vm_index }}.1;
+
+# You can define your own constants
+define my_asn = 6452{{ tags.vm_index }};
+# define my_addr = 198.51.100.1;
+
+# Tables master4 and master6 are defined by default
+# ipv4 table master4;
+# ipv6 table master6;
+
+# The Device protocol is not a real routing protocol. It does not generate any
+# routes and it only serves as a module for getting information about network
+# interfaces from the kernel. It is necessary in almost any configuration.
+protocol device {
+}
+
+# The direct protocol is not a real routing protocol. It automatically generates
+# direct routes to all network interfaces. Can exist in as many instances as you
+# wish if you want to populate multiple routing tables with direct routes.
+protocol direct {
+	disabled;		# Disable by default
+	ipv4;			# Connect to default IPv4 table
+	ipv6;			# ... and to default IPv6 table
+}
+
+protocol kernel {
+	ipv4 {			# Connect protocol to IPv4 table by channel
+#	      table master4;	# Default IPv4 table is master4
+#	      import all;	# Import to table, default is import all
+	      export all;	# Export to protocol. default is export none
+	};
+#	learn;			# Learn alien routes from the kernel
+#	kernel table 10;	# Kernel table to synchronize with (default: main)
+}
+
+protocol kernel {
+	ipv6 { export all; };
+}
+
+protocol static {
+	ipv4;			# Again, IPv4 channel with default options
+}
+
+# This statement causes inclusion of a new file. 
+# The filename could also be a wildcard, in that case matching files are included in alphabetic order. 
+include "bgp_*.conf";

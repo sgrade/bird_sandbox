@@ -1,0 +1,20 @@
+---
+# - name: Include vars of stuff.yml into the 'stuff' variable.
+  # include_vars:
+    # file: defaults/{{ tags.Name }}.yml
+    # name: "{{ tags.Name }}"
+
+- name: Debug
+  ansible.builtin.debug:
+    var: "{{ tags.Name }}"
+
+- name: Template new files in host_vars
+  ansible.builtin.template:
+    src: "templates/{{ item }}"
+    dest: "{{ inventory_dir }}/host_vars/{{ inventory_hostname }}"
+    lstrip_blocks: yes
+  with_items:
+    - "host_vars.j2"
+    - "peers.j2"
+  delegate_to:
+    localhost

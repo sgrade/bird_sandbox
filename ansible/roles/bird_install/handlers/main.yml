@@ -1,0 +1,6 @@
+---
+# Configure BIRD
+
+- name: Reload bird.service
+  systemd:
+    daemon_reload: yes

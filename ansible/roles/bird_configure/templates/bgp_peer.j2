@@ -1,0 +1,42 @@
+{% set peer_name = tags.Name+"_to_"+peer.name %}
+protocol bgp bgp_{{ peer_name }} {
+
+    #	description "My BGP uplink";
+    local as 6452{{ tags.vm_index }};
+
+    neighbor {{ peer.peer_ip_address }} as {{ peer.asn }};
+
+    #	hold time 90;		# Default is 240
+
+    #	password "secret";	# Password used for MD5 authentication
+
+    #	ipv4 {			# regular IPv4 unicast (1/1)
+    #		import filter rt_import;
+    #		export where source ~ [ RTS_STATIC, RTS_BGP ];
+    #	};
+    #
+    #	ipv6 {			# regular IPv6 unicast (2/1)
+    #		export filter {	# The same as 'where' expression above
+    #			if source ~ [ RTS_STATIC, RTS_BGP ]
+    #			then accept;
+    #			else reject;
+    #		};
+    #	};
+    #
+    #	ipv4 multicast {	# IPv4 multicast topology (1/2)
+    #		table mrib4;	# explicit IPv4 table
+    #		import filter rt_import;
+    #		export all;
+    #	};
+    #
+    #	ipv6 multicast {	# IPv6 multicast topology (2/2)
+    #		table mrib6;	# explicit IPv6 table
+    #		import filter rt_import;
+    #		export all;
+    #	};
+
+    ipv4 {
+            import filter {accept;};
+            export filter {accept;};
+    };
+}

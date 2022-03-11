@@ -1,0 +1,13 @@
+---
+# Ensure that Linux user/group (bird/bird) exist
+
+- name: Ensure group 'bird' exists
+  ansible.builtin.group:
+    name: bird
+    state: present
+
+- name: Add user 'bird' to group 'bird'
+  ansible.builtin.user:
+    name: bird
+    group: bird
+    state: present

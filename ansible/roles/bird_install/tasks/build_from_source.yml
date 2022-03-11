@@ -1,0 +1,53 @@
+---
+# Download and build BIRD from source code
+
+- name: Install dependencies for BIRD build
+  apt:
+    name: 
+      - build-essential
+      - flex
+      - bison
+      - libncurses-dev
+      - libreadline-dev
+    state: present
+    update_cache: yes
+
+- name: Create a build directory if it does not exist
+  ansible.builtin.file:
+    path: /tmp/bird
+    state: directory
+    mode: '0755'
+
+- name: Download BIRD source code and extract to /tmp/bird
+  ansible.builtin.unarchive:
+    src: https://bird.network.cz/download/bird-2.0.9.tar.gz
+    dest: /tmp/bird
+    remote_src: yes
+    list_files: true
+  register: f
+
+- name: Get build dir
+  set_fact:
+    build_dir: "{{ f.files[0][:-1] }}"
+
+- name: Print build dir
+  ansible.builtin.debug:
+    var: build_dir
+
+- name: Run "./configure"
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/bird/{{ build_dir }}"
+  with_items:
+    # https://www.gnu.org/prep/standards/html_node/Directory-Variables.html
+    - ./configure --prefix=/usr --sysconfdir=/etc/bird  --runstatedir=/run/bird
+
+- name: Run "make", "install"  
+  make:
+    chdir: "/tmp/bird/{{ build_dir }}"
+    target: install
+
+# - name: Recursively remove BIRD build directory
+  # ansible.builtin.file:
+    # path: "/tmp/bird
+    # state: absent

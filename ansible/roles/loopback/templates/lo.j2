@@ -1,0 +1,8 @@
+# Loopback interface
+
+auto lo lo:0
+iface lo inet loopback
+
+iface lo:0 inet static
+  address 10.0.10{{ tags.vm_index }}.1
+  netmask 255.255.255.0

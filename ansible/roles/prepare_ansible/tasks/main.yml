@@ -1,0 +1,6 @@
+---
+# - name: Delete old files in host_vars
+  # import_tasks: delete_old_host_vars.yml
+
+- name: Set host_vars
+  import_tasks: set_host_vars.yml

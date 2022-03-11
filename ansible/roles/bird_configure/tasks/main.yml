@@ -1,0 +1,3 @@
+---
+- name: Template bird.conf
+  import_tasks: template_bird_configuration.yml

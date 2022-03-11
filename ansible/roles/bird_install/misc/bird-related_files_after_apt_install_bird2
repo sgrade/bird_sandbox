@@ -1,0 +1,27 @@
+root@router1:~# find / -name bird*
+/etc/init.d/bird
+/etc/bird
+/etc/bird/bird.conf
+/etc/systemd/system/multi-user.target.wants/bird.service
+/run/bird
+/run/bird/bird.ctl
+/usr/share/doc/bird2
+/usr/share/bird2
+/usr/share/bird2/bird.conf
+/usr/share/man/man8/birdc.8.gz
+/usr/share/man/man8/bird.8.gz
+/usr/share/lintian/overrides/bird2
+/usr/lib/bird
+/usr/lib/systemd/system/bird.service
+/usr/sbin/birdcl
+/usr/sbin/bird
+/usr/sbin/birdc
+/var/lib/dpkg/info/bird2.list
+/var/lib/dpkg/info/bird2.conffiles
+/var/lib/dpkg/info/bird2.postrm
+/var/lib/dpkg/info/bird2.prerm
+/var/lib/dpkg/info/bird2.postinst
+/var/lib/dpkg/info/bird2.md5sums
+/var/lib/systemd/deb-systemd-helper-enabled/multi-user.target.wants/bird.service
+/var/lib/systemd/deb-systemd-helper-enabled/bird.service.dsh-also
+/sys/fs/cgroup/system.slice/bird.service

@@ -1,0 +1,5 @@
+---
+- name: Reload bird.service
+  ansible.builtin.service:
+    name: bird
+    state: reloaded

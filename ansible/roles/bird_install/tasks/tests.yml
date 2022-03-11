@@ -1,0 +1,16 @@
+---
+- name: Make sure that BIRD service is started
+  ansible.builtin.service:
+    name: bird
+    state: started
+
+- name: Check if /etc/bird exists
+  stat:
+    path: "/etc/bird"
+  register: etc_bird
+
+- name: Fail if /etc/bird does not exist
+  fail:
+    msg: "/etc/bird doesn't exist"
+  when: 
+    - not etc_bird.stat.exists

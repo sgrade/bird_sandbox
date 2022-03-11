@@ -1,0 +1,22 @@
+{% extends "host_vars.j2" %}
+{% block bgp_peers %}
+peers:
+  {% for peer in all_bgp_peers %}
+  {% if router_index == peer.router_index %}
+
+  - name: {{ peer.name }}
+    type: {{ peer.type }}
+    ip: {{ peer.ip }}
+    as: {{ peer.as }}
+    max_prefix: {{ peer.max_prefix }}
+    # NOTE: paths are actually routes. the name "paths" is left for compatibility with the old bird.conf.j2 format.
+    # TODO - change paths to routes
+    paths:
+    {% for route in peer.routes %}
+      - prefix: {{ route.prefix }}
+        prefix_len: {{ route.prefix_len }}
+        type: {{ route.type }}
+    {% endfor %}
+  {% endif %}
+  {% endfor %}
+  {% endblock %}

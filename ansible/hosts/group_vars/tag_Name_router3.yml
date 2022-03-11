@@ -1,0 +1,27 @@
+# Router3
+
+organization: TRANSIT3
+
+bgp_peers:
+
+  - name: router1
+    type: type1
+    local_ip_address: 10.0.13.33
+    peer_ip_address: 10.0.13.11
+    asn: 64521
+    max_prefix: 'off'
+    routes:
+      - prefix: 10.0.103.1
+        prefix_len: 32
+        type: loopback
+
+  - name: router2
+    type: type1
+    local_ip_address: 10.0.23.33
+    peer_ip_address: 10.0.23.22
+    asn: 64522
+    max_prefix: 'off'
+    routes:
+      - prefix: 10.0.103.1
+        prefix_len: 32
+        type: loopback

@@ -1,0 +1,38 @@
+---
+# Copy the files to run bird as a service
+
+- name: Create "/etc/bird" directory if it does not exist
+  ansible.builtin.file:
+    path: /etc/bird
+    state: directory
+    mode: '0755'
+
+- name: Copy envvars file to /etc/bird
+  ansible.builtin.copy:
+    src: files/envvars
+    dest: /etc/bird/envvars
+    mode: '0644'
+
+- name: Create "/usr/lib/bird" directory if it does not exist
+  ansible.builtin.file:
+    path: /usr/lib/bird
+    state: directory
+    mode: '0755'
+
+- name: Copy prepare-environment file to /usr/lib/bird
+  ansible.builtin.copy:
+    src: files/prepare-environment
+    dest: /usr/lib/bird/prepare-environment
+    mode: '0755'
+
+- name: Copy bird-exporter.service file to /usr/lib/systemd
+  ansible.builtin.copy:
+    src: files/bird.service
+    dest: /usr/lib/systemd/system/bird.service
+    mode: '0644'
+
+- name: Copy bird file to /etc/init.d
+  ansible.builtin.copy:
+    src: files/bird
+    dest: /etc/init.d/bird
+    mode: '0755'

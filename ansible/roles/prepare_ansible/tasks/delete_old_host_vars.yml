@@ -1,0 +1,22 @@
+---
+# TODO - better cleanup.
+
+- name: Find old files in host_vars
+  find:
+    paths: hosts/host_vars
+    patterns: 'ec2*'
+  register: files_to_delete
+  delegate_to:
+    localhost
+  run_once:
+    true
+
+- name: Remove old files in host_vars
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"
+  delegate_to:
+    localhost
+  run_once:
+    true
