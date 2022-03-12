@@ -13,6 +13,7 @@ SSH access to the virtual machines (see terraform for details).
 ## Inventory
 AWS EC2 dynamic inventory is used. Below are some commands to get used to it.
 
+`ansible all -m ping`
 `ansible tag_Name_router1 -m ping`
 `ansible-inventory --graph`
 `ansible-inventory --list`
