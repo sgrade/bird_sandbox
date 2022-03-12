@@ -10,10 +10,3 @@ filters:
   # All instances with their `environment` tag set to `sandbox`
   tag:environment: 
    - sandbox
-
-# https://docs.ansible.com/ansible/latest/plugins/inventory.html#using-inventory-plugins
-cache: yes
-cache_plugin: ansible.builtin.jsonfile
-cache_timeout: 7200
-cache_connection: /tmp/aws_inventory
-cache_prefix: aws_ec2

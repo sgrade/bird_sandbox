@@ -6,10 +6,5 @@
     owner: root
     group: root
     mode: '0755'
-
-- name: Restart networking service
-  ansible.builtin.systemd:
-    name: networking
-    # Note: reload will not work. The following message is received while reloading manually.
-    # "Failed to reload networking.service: Job type reload is not applicable for unit networking.service."
-    state: restarted
+  notify:
+    - Restart networking service

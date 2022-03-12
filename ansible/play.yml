@@ -5,14 +5,14 @@
   become_method: sudo
   
   tasks:
-  
-    # - name: bird_install
-      # include_role:
-        # name: bird_install
 
-    # - name: Ansible role - loopback
-      # include_role:
-        # name: loopback
+    - name: Ansible role - loopback
+      include_role:
+        name: loopback
+  
+    - name: Ansible role - bird_install
+      include_role:
+        name: bird_install
 
     - name: Ansible role - bird_configure
       include_role:
