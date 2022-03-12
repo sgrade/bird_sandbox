@@ -24,7 +24,7 @@ Configure the infrastructure with Ansible.
 For the details, check the READMEs in related folders.
 
 #### SSH
-To share your credentials with the container, read [here](https://code.visualstudio.com/docs/remote/containers#_sharing-git-credentials-with-your-container).
+To share your credentials or SSH keys with the container, read [here](https://code.visualstudio.com/docs/remote/containers#_using-a-credential-helper).
 
 ### Work without Visual Studio Code
 
