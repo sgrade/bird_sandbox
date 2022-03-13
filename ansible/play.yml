@@ -9,11 +9,23 @@
     - name: Ansible role - loopback
       include_role:
         name: loopback
+      tags:
+        - loopback
+
+    - name: Ansible role - ip_forwarding
+      include_role:
+        name: ip_forwarding
+      tags:
+        - ip_forwarding
   
     - name: Ansible role - bird_install
       include_role:
         name: bird_install
+      tags:
+        - install
 
     - name: Ansible role - bird_configure
       include_role:
         name: bird_configure
+      tags:
+        - config

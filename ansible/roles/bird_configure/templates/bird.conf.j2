@@ -33,7 +33,11 @@ protocol kernel {
 	ipv4 {			# Connect protocol to IPv4 table by channel
 #	      table master4;	# Default IPv4 table is master4
 #	      import all;	# Import to table, default is import all
-	      export all;	# Export to protocol. default is export none
+	      # export all;	# Export to protocol. default is export none
+		export filter {
+        	if proto = "static_lo" then reject;
+            accept;
+        };
 	};
 #	learn;			# Learn alien routes from the kernel
 #	kernel table 10;	# Kernel table to synchronize with (default: main)
@@ -50,3 +54,4 @@ protocol static {
 # This statement causes inclusion of a new file. 
 # The filename could also be a wildcard, in that case matching files are included in alphabetic order. 
 include "bgp_*.conf";
+include "static_*.conf";

@@ -1,0 +1,4 @@
+protocol static static_lo {
+    ipv4;
+    route 10.0.10{{ tags.vm_index }}.0/24 blackhole;
+}

@@ -8,3 +8,5 @@
     mode: '0755'
   notify:
     - Restart networking service
+  tags:
+    - loopback
