@@ -31,7 +31,10 @@ override.tf.json
 # Ansible
 *.retry
 
-# Sandbox-specific files
+# Terraform
+.DS_Store
 .terraform.lock.hcl
+
+# Sandbox-specific files
 routers
 routers.yml
