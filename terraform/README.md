@@ -42,9 +42,9 @@ The AWS EC2 VM-s are [zero-indexed](https://en.wikipedia.org/wiki/Zero-based_num
 
 E.g., to re-create router1, you use index 0 in the following command:
 
-`terraform apply -replace="aws_instance.router[0]`
+`terraform apply -replace="aws_instance.router[0]"`
 
 The one-based indices are used for easier matching with the IP addresses: .0 IP address usually cannot be assigned to a host.
 
 #### All VMs
-`terraform apply -replace="aws_instance.router`
+`terraform apply -replace="aws_instance.router"`
