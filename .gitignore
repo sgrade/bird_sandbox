@@ -32,9 +32,11 @@ override.tf.json
 *.retry
 
 # Terraform
-.DS_Store
 .terraform.lock.hcl
 
 # Sandbox-specific files
 routers
 routers.yml
+
+# Misc
+.DS_Store
