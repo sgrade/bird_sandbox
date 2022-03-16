@@ -23,8 +23,11 @@ Configure the infrastructure with Ansible.
 
 For the details, check the READMEs in related folders.
 
+#### AWS access
+You can share your host (e.g. laptop) AWS credentials with the devcontainer in the same way as described [here for containerized aws-cli](https://github.com/sgrade/_Lab/blob/master/AWS/aws-cli_v2.md).
+
 #### SSH
-To share your credentials or SSH keys with the container, read [here](https://code.visualstudio.com/docs/remote/containers#_using-a-credential-helper).
+To share your SSH keys with the container, read [here](https://code.visualstudio.com/docs/remote/containers#_using-a-credential-helper).
 
 ### Work without Visual Studio Code
 
