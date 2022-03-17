@@ -36,6 +36,9 @@ E.g.
 `terraform destroy`
 
 ## Useful commands
+### Print the output
+`terraform output`
+
 ### Re-create Virtual Machines
 #### One VM
 The AWS EC2 VM-s are [zero-indexed](https://en.wikipedia.org/wiki/Zero-based_numbering), but in the sandbox they are one-indexed. 
