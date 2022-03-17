@@ -7,7 +7,13 @@ resource "aws_vpc" "sandbox_vpc" {
   // True so, instances are accessible from Internet
   enable_dns_hostnames  = true
 
+  assign_generated_ipv6_cidr_block = true
+
   tags = var.resource_tags
+}
+
+data "aws_vpc" "sandbox_vpc" {
+  id = aws_vpc.sandbox_vpc.id
 }
 
 // For the subnets to be in the same availability zone. Otherwise the deployment will fail.

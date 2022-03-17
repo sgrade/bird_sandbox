@@ -15,6 +15,8 @@ resource "aws_network_interface" "private_subnet_12" {
   // https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing
   private_ips = [cidrhost(aws_subnet.sandbox_private_subnet_12.cidr_block, local.subnet_12_ips[count.index])]
 
+  ipv6_addresses = [cidrhost(aws_subnet.sandbox_private_subnet_12.ipv6_cidr_block, local.subnet_12_ips[count.index])]
+
   // Instances cannot act as routers without this
   // https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck
   source_dest_check = false
@@ -53,6 +55,8 @@ resource "aws_network_interface" "private_subnet_23" {
   // https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing
   private_ips = [cidrhost(aws_subnet.sandbox_private_subnet_23.cidr_block, local.subnet_23_ips[count.index])]
 
+  ipv6_addresses = [cidrhost(aws_subnet.sandbox_private_subnet_23.ipv6_cidr_block, local.subnet_23_ips[count.index])]
+
   // Instances cannot act as routers without this
   // https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck
   source_dest_check = false
@@ -90,6 +94,8 @@ resource "aws_network_interface" "private_subnet_13" {
   // The first four IP addresses and the last IP address in each subnet CIDR block are reserved
   // https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing
   private_ips = [cidrhost(aws_subnet.sandbox_private_subnet_13.cidr_block, local.subnet_13_ips[count.index])]
+
+  ipv6_addresses = [cidrhost(aws_subnet.sandbox_private_subnet_13.ipv6_cidr_block, local.subnet_13_ips[count.index])]
 
   // Instances cannot act as routers without this
   // https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck

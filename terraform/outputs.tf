@@ -1,17 +1,34 @@
 // Type "terraform output" to see the output
 
 output "instance_dns_names" {
-  value = tomap({
+  value = {
     for inst in aws_instance.router:
       inst.tags.Name => inst.public_dns
-  })
+  }
 }
 
 output "instance_public_ips" {
-  value = tomap({
+  value = {
     for inst in aws_instance.router:
       inst.tags.Name => inst.public_ip
-  })
+  }
+}
+
+output "CIDR_blocks" {
+  value = {
+    "router1_to_router2" = {
+      "ipv4" = aws_subnet.sandbox_private_subnet_12.cidr_block
+      "ipv6" = aws_subnet.sandbox_private_subnet_12.ipv6_cidr_block
+    }
+    "router1_to_router3" = {
+      "ipv4" = aws_subnet.sandbox_private_subnet_13.cidr_block
+      "ipv6" = aws_subnet.sandbox_private_subnet_13.ipv6_cidr_block
+    }
+    "router2_to_router3" = {
+      "ipv4" = aws_subnet.sandbox_private_subnet_23.cidr_block
+      "ipv6" = aws_subnet.sandbox_private_subnet_23.ipv6_cidr_block
+    }
+  }
 }
 
 // Ansible inventory in yaml format
