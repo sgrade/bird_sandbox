@@ -40,6 +40,16 @@ variable "vpc_cidr_block" {
   default     = "10.0.0.0/16"
 }
 
+// About IPv6 Unique Local Addresses - 
+// https://blog.apnic.net/2020/05/20/getting-ipv6-private-addressing-right/
+variable "ipv6_ula_prefix" {
+  description = "48-bit unique local IPv6 prefix as defined by RFC 4193."
+  type        = string
+
+  // Generate new - https://www.unique-local-ipv6.com/
+  default = "fd6c:c285:47da::/48"
+}
+
 variable "enable_vpn_gateway" {
   description = "Enable a VPN gateway in your VPC."
   type        = bool
