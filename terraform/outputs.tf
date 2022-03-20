@@ -31,7 +31,8 @@ output "CIDR_blocks" {
   }
 }
 
-// Ansible inventory in yaml format
+// Ansible inventory in yaml format. 
+// Not used by the automation.
 resource "local_file" "routers_yml" {
     content     = replace(
     yamlencode(
@@ -52,7 +53,8 @@ resource "local_file" "routers_yml" {
     filename = "${path.module}/routers.yml"
 }
 
-// Ansible inventory in ini format. All hosts are in "ungrouped" default group
+// Ansible inventory in ini format.
+// Not used by the automation.
 resource "local_file" "routers" {
     content     = join("\n",
       [for inst in aws_instance.router:
