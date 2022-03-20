@@ -1,0 +1,8 @@
+---
+- name: Copy files
+  ansible.builtin.copy:
+    src: ../terraform/router{{ tags.vm_index }}_bgp_peers.yml
+    dest: hosts/group_vars/tag_Name_router{{ tags.vm_index }}.yml
+  delegate_to: localhost
+  tags:
+    - bgp

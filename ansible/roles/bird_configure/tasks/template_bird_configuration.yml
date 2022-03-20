@@ -48,7 +48,7 @@
     owner: bird
     group: bird
     mode: '0755'
-  loop: "{{ bgp_peers }}"
+  loop: "{{ bgp_peers_ipv4 }}"
   loop_control:
     loop_var: peer
   notify:

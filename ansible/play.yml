@@ -29,3 +29,4 @@
         name: bird_configure
       tags:
         - config
+        - bgp

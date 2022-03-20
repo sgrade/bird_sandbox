@@ -1,0 +1,10 @@
+---
+# Currently not used, but left for reference
+# Get the subnet from IPv6 address of eth1
+- name: IPv6 addresses
+  ansible.builtin.debug:
+    msg: "{{ item.address | ansible.netcommon.ipsubnet(64) }}"
+  tags:
+    - ipv6
+  loop: "{{ ansible_eth1.ipv6 }}"
+  when: item.scope == "global"
