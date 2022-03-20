@@ -35,8 +35,8 @@ override.tf.json
 .terraform.lock.hcl
 
 # Sandbox-specific files
-routers
-routers.yml
+router*
+**/tag_Name*
 
 # Misc
 .DS_Store
