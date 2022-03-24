@@ -1,0 +1,20 @@
+---   
+- name: Template BIRD config to /etc/bird.conf
+  ansible.builtin.template:
+    src: templates/bird.conf.j2
+    dest: /etc/bird/bird.conf
+    owner: bird
+    group: bird
+    mode: '0755'
+  notify:
+    - Reload bird.service
+  tags:
+    - config
+    - bird
+
+# - name: 
+  # ansible.builtin.debug:
+    # msg: "{{ pr.name }}"
+  # loop: "{{ bgp_peers }}"
+  # loop_control:
+    # loop_var: pr

@@ -1,4 +1,4 @@
-{% set peer_name = tags.Name+"_to_"+peer.name %}
+{% set peer_name = "AS"+peer.asn+"_"+tags.Name+"_to_"+peer.name+"_ipv4" %}
 protocol bgp bgp_{{ peer_name }} {
 
     #	description "My BGP uplink";

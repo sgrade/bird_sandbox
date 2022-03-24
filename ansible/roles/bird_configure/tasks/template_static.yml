@@ -1,0 +1,13 @@
+---
+- name: Template per peer configs to /etc/bird/static_lo.conf
+  ansible.builtin.template:
+    src: templates/static.j2
+    dest: /etc/bird/static_lo.conf
+    owner: bird
+    group: bird
+    mode: '0755'
+  notify:
+    - Reload bird.service
+  tags:
+    - config
+    - static

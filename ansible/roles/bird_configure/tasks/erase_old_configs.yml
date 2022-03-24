@@ -1,0 +1,24 @@
+---
+# TODO: parametrise the type of config (bird.conf, bgp, static)
+# The cleanup tasks might be useful to experiment with BIRD configs and erase them after that
+# Run with:
+#   ansible-playbook play.yml --tags [never,cleanup]
+# To run together with the new configs
+#   ansible-playbook play.yml --tags [never,config,cleanup]
+- name: Find existing files /etc/bird/*.conf
+  find:
+    paths: /etc/bird
+    patterns: "*.conf"
+  register: conf
+  tags:
+    - never
+    - cleanup
+
+- name: Delete existing files /etc/bird/*.conf
+  file:
+    path: "{{ item['path'] }}"
+    state: absent
+  with_items: "{{ conf['files'] }}"
+  tags:
+    - never
+    - cleanup

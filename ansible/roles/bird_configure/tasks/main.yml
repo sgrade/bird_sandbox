@@ -1,6 +1,21 @@
 ---
-- name: Get bgp_peers from terraform
+- name: Get files with bgp_peers from terraform
   import_tasks: get_bgp_peers.yml
 
-- name: Template bird.conf
-  import_tasks: template_bird_configuration.yml
+- name: Erase old BIRD config files
+  import_tasks: erase_old_configs.yml
+
+- name: "Template BIRD config: host specific part"
+  import_tasks: template_bird_conf.yml
+
+- name: "Template BIRD configs: static routes"
+  import_tasks: template_static.yml
+
+- name: "Get BGP peers from terraform-generated files"
+  import_tasks: get_bgp_peers.yml
+
+- name: "Template BIRD configs: IPv4"
+  import_tasks: template_bgp_ipv4.yml
+
+- name: "Template BIRD configs: IPv6"
+  import_tasks: template_bgp_ipv6.yml

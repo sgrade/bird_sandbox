@@ -1,10 +1,10 @@
-{% set peer_name = tags.Name+"_to_"+peer.name+"_ipv6 %}
+{% set peer_name = "AS"+peer.asn+"_"+tags.Name+"_to_"+peer.name+"_ipv6" %}
 protocol bgp bgp_{{ peer_name }} {
 
     #	description "My BGP uplink";
     local as 6452{{ tags.vm_index }};
 
-    neighbor {{ peer.peer_ipv6_address }} as {{ peer.asn }};
+    neighbor {{ peer.peer_ip_address }} as {{ peer.asn }};
 
     #	hold time 90;		# Default is 240
 
