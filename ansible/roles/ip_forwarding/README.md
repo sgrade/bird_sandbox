@@ -1,29 +1,24 @@
 # Summary
-After IP forwarding is enabled, some IPv6 routes disappear. 
+After IP forwarding is enabled, the IPv6 routes disappear except for local IPs. 
 After IP forwarding is disabled, the routes appear again. 
-Some theory behind this behavour is [here](https://tldp.org/HOWTO/Linux+IPv6-HOWTO/ch11s02.html).
 
-# Kernel vs RA routes
-Two types of routes disappear:
-- routes to the directly-connected networks from "proto kernel"
-- default routes from "proto ra"
+For the changes to happen, restart networking.
+```
+systemctl restart networking.service
+```
 
-Note: from "man ip-route"
-- kernel - the route was installed by the kernel during autoconfiguration.
-- ra - the route was installed by Router Discovery protocol.
+# Notes (TODO: verify why like this)
 
-Note: enabling of `net.ipv6.conf.all.accept_ra` didn't return the defaults; same with per-interface settings.
+Enabling of `net.ipv6.conf.all.accept_ra` didn't return the routes.
+Enabling per-interface specific settings (e.g. `net.ipv6.conf.eth1.accept_ra`) solved it. 
 
-# DHCP
-Set RUN="yes" in /etc/dhcp/dhclient-enter-hooks.d/debug to debug DHCP. 
+# Documenation
 
-The output (/tmp/dhclient-script.debug) will show that the IPv6 addresses are received by DHCP with prefix /128.
+Description of the options - [https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt](https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt).
 
-So the routes are set differently.
+User-friendly sysctl explorer - [https://sysctl-explorer.net/net/ipv6/forwarding/](https://sysctl-explorer.net/net/ipv6/forwarding/).
 
-
-# The routes from a VM
-Tested on Debian 11
+# The routes
 
 ## Before IP forwarding
 ```
@@ -65,3 +60,19 @@ fe80::/64 dev eth0 proto kernel metric 256 pref medium
 fe80::/64 dev eth1 proto kernel metric 256 pref medium
 fe80::/64 dev eth2 proto kernel metric 256 pref medium
 ```
+
+# Kernel vs RA routes
+Two types of routes disappear:
+- routes to the directly-connected networks from "proto kernel"
+- default routes from "proto ra"
+
+Note: from "man ip-route"
+- kernel - the route was installed by the kernel during autoconfiguration.
+- ra - the route was installed by Router Discovery protocol.
+
+# DHCP
+Set RUN="yes" in /etc/dhcp/dhclient-enter-hooks.d/debug to debug DHCP. 
+
+The output (/tmp/dhclient-script.debug) will show that the IPv6 addresses are received by DHCP with prefix /128.
+
+So the routes are set differently.

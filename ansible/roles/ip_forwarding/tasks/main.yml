@@ -9,20 +9,50 @@
   tags:
     - ip_forwarding
 
-- ansible.posix.sysctl:
-    name: net.ipv6.conf.all.forwarding
+# https://sysctl-explorer.net/net/ipv6/forwarding/
+- name: forwarding
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.{{ interface }}.forwarding
     value: '1'
     sysctl_set: yes
     state: present
     reload: yes
+  loop: 
+    - eth1
+    - eth2
+  loop_control:
+    loop_var: interface
   tags:
     - ip_forwarding
 
-# - ansible.posix.sysctl:
-    # name: net.ipv6.conf.all.accept_ra
-    # value: '1'
-    # sysctl_set: yes
-    # state: present
-    # reload: yes
-  # tags:
-    # - ip_forwarding
+# https://sysctl-explorer.net/net/ipv6/accept_ra/
+- name: accept_ra
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.{{ interface }}.accept_ra
+    value: '2'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  loop: 
+    - eth1
+    - eth2
+  loop_control:
+    loop_var: interface
+  tags:
+    - ip_forwarding
+
+# https://sysctl-explorer.net/net/ipv6/accept_ra_defrtr/
+- name: accept_ra_defrtr
+  ansible.posix.sysctl:
+    name: net.ipv6.conf.{{ interface }}.accept_ra_defrtr
+    value: '0'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  loop: 
+    - eth1
+    - eth2
+  loop_control:
+    loop_var: interface
+  tags:
+    - ip_forwarding
