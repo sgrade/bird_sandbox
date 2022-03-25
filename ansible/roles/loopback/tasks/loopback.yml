@@ -6,7 +6,7 @@
     owner: root
     group: root
     mode: '0755'
-  notify:
-    - Restart networking service
+  notify: Restart networking service
   tags:
+    - interfaces
     - loopback
