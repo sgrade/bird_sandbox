@@ -9,8 +9,7 @@
   loop: "{{ bgp_peers_ipv6 }}"
   loop_control:
     loop_var: peer
-  notify:
-    - Reload bird.service
+  notify: Reload bird
   tags:
     - config
     - bgp

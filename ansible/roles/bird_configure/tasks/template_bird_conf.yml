@@ -6,8 +6,7 @@
     owner: bird
     group: bird
     mode: '0755'
-  notify:
-    - Reload bird.service
+  notify: Reload bird
   tags:
     - config
     - bird
