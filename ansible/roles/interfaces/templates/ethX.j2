@@ -1,0 +1,8 @@
+auto {{ interface.name }}
+allow-hotplug {{ interface.name }}
+
+iface {{ interface.name }} inet dhcp
+
+iface {{ interface.name }} inet6 static
+  try_dhcp 0
+  address {{ interface.address_ipv6 }}/64

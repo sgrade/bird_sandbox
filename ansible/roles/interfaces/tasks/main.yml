@@ -1,0 +1,24 @@
+---   
+# The following line is commented out
+#   "source-directory /run/network/interfaces.d"
+- name: Replace /etc/network/interfaces file
+  ansible.builtin.copy:
+    src: files/interfaces
+    dest: /etc/network/interfaces
+    mode: '0644'
+  tags:
+    - config
+    # Not required for loopback
+    - eth
+
+- name: Template interface configs to /etc/network/interfaces.d/
+  ansible.builtin.template:
+    src: templates/ethX.j2
+    dest: /etc/network/interfaces.d/{{ interface.name }}
+    mode: '0644'
+  loop: "{{ interfaces }}"
+  loop_control:
+    loop_var: interface
+  tags:
+    - config
+    - eth
