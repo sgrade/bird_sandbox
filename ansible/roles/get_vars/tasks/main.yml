@@ -1,0 +1,3 @@
+---
+- name: Get bgp_peers from terraform
+  import_tasks: get_bgp_peers.yml
