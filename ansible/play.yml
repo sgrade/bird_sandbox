@@ -37,3 +37,6 @@
       tags:
         - config
         - bgp
+        - ipv4
+        - ipv6
+        - static

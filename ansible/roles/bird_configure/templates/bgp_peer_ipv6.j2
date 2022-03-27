@@ -6,6 +6,11 @@ protocol bgp bgp_{{ peer_name }} {
 
     neighbor {{ peer.peer_ip_address }} as {{ peer.asn }};
 
+    # AWS assigns IPv6 addresses with prefix /128
+    # So the peer is in another network
+    # Without multihop the peering doesn't work
+    multihop;
+
     #	hold time 90;		# Default is 240
 
     #	password "secret";	# Password used for MD5 authentication
