@@ -35,8 +35,11 @@
       include_role:
         name: bird_configure
       tags:
+        - cleanup
         - config
         - bgp
         - ipv4
         - ipv6
         - static
+        - direct
+        - experiment

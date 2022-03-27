@@ -15,7 +15,7 @@
     - bgp
     - ipv6
 
-- name: Template per peer configs to /etc/bird/bgp_*_ipv6.conf
+- name: Debug peer IPv6 address
   ansible.builtin.debug:
     msg: "{{ peer.peer_ip_address }}"
   loop: "{{ bgp_peers_ipv6 }}"

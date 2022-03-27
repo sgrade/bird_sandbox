@@ -20,38 +20,9 @@ define my_asn = 6452{{ tags.vm_index }};
 protocol device {
 }
 
-# The direct protocol is not a real routing protocol. It automatically generates
-# direct routes to all network interfaces. Can exist in as many instances as you
-# wish if you want to populate multiple routing tables with direct routes.
-protocol direct {
-	disabled;		# Disable by default
-	ipv4;			# Connect to default IPv4 table
-	ipv6;			# ... and to default IPv6 table
-}
-
-protocol kernel {
-	ipv4 {			# Connect protocol to IPv4 table by channel
-#	      table master4;	# Default IPv4 table is master4
-#	      import all;	# Import to table, default is import all
-	      # export all;	# Export to protocol. default is export none
-		export filter {
-        	if proto = "static_lo" then reject;
-            accept;
-        };
-	};
-#	learn;			# Learn alien routes from the kernel
-#	kernel table 10;	# Kernel table to synchronize with (default: main)
-}
-
-protocol kernel {
-	ipv6 { export all; };
-}
-
-protocol static {
-	ipv4;			# Again, IPv4 channel with default options
-}
-
-# This statement causes inclusion of a new file. 
+# "include" statement causes inclusion of a new file. 
 # The filename could also be a wildcard, in that case matching files are included in alphabetic order. 
-include "bgp_*.conf";
+include "kernel_*.conf";
+include "direct_*.conf";
 include "static_*.conf";
+include "bgp_*.conf";

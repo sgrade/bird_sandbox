@@ -1,0 +1,10 @@
+protocol kernel kernel_ipv6 {
+	persist;
+	ipv6 {
+		import none; 
+		# export all;
+		export filter {
+            accept;
+        };
+	};
+}

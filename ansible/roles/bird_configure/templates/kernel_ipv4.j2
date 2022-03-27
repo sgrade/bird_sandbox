@@ -1,0 +1,10 @@
+protocol kernel kernel_ipv4 {
+	persist;
+	ipv4 {			
+		import none;
+		# export all;
+		export filter {
+			accept;
+		};
+	};
+}

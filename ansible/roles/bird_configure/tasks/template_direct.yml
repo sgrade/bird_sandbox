@@ -1,0 +1,12 @@
+---
+- name: Template per peer configs to /etc/bird/direct_default.conf
+  ansible.builtin.template:
+    src: templates/direct.j2
+    dest: /etc/bird/direct_default.conf
+    owner: bird
+    group: bird
+    mode: '0755'
+  notify: Reload bird
+  tags:
+    - config
+    - direct

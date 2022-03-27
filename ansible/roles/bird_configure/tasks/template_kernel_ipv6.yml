@@ -1,0 +1,13 @@
+---
+- name: Template kernel protocol for IPv6 to /etc/bird/kernel_ipv6.conf
+  ansible.builtin.template:
+    src: templates/kernel_ipv6.j2
+    dest: /etc/bird/kernel_ipv6.conf
+    owner: bird
+    group: bird
+    mode: '0755'
+  notify: Reload bird
+  tags:
+    - config
+    - kernel
+    - ipv6

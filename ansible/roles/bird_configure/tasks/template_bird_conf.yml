@@ -10,10 +10,3 @@
   tags:
     - config
     - bird
-
-# - name: 
-  # ansible.builtin.debug:
-    # msg: "{{ pr.name }}"
-  # loop: "{{ bgp_peers }}"
-  # loop_control:
-    # loop_var: pr

@@ -5,6 +5,12 @@
 - name: "Template BIRD config: host specific part"
   import_tasks: template_bird_conf.yml
 
+- name: "Template BIRD configs: kernel protocol for IPv4"
+  import_tasks: template_kernel_ipv4.yml
+
+- name: "Template BIRD configs: kernel protocol for IPv6"
+  import_tasks: template_kernel_ipv6.yml
+
 - name: "Template BIRD configs: static routes"
   import_tasks: template_static.yml
 
@@ -13,3 +19,10 @@
 
 - name: "Template BIRD configs: IPv6"
   import_tasks: template_bgp_ipv6.yml
+
+- name: "Template BIRD configs: direct"
+  import_tasks: template_direct.yml
+
+# Learning BIRD and experimenting with it
+- name: "Template BIRD configs: experiments"
+  import_tasks: experiment.yml

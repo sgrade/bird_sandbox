@@ -1,0 +1,25 @@
+---
+- name: Experiment with /etc/bird/kernel_ipv6.conf
+  ansible.builtin.template:
+    src: templates/experiment_kernel_ipv6.j2
+    dest: /etc/bird/kernel_ipv6.conf
+    owner: bird
+    group: bird
+    mode: '0755'
+  notify: Reload bird
+  tags:
+    - never
+    - experiment
+
+- name: Experiment with /etc/bird/direct.conf
+  ansible.builtin.template:
+    src: templates/experiment_direct.j2
+    dest: /etc/bird/direct_experiment.conf
+    owner: bird
+    group: bird
+    mode: '0755'
+  notify: Reload bird
+  tags:
+    - never
+    - experiment
+
