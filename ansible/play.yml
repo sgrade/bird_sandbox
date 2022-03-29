@@ -6,12 +6,6 @@
   
   tasks:
 
-    - name: Ansible role - get_vars
-      include_role:
-        name: get_vars
-      tags:
-        - always
-
     - name: Ansible role - loopback
       include_role:
         name: loopback
@@ -37,6 +31,8 @@
       tags:
         - cleanup
         - config
+        - bird
+        - kernel
         - bgp
         - ipv4
         - ipv6

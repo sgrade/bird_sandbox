@@ -41,7 +41,7 @@ resource "local_file" "router1_bgp_peers_yml" {
         ])
       })
     )
-    filename = "${path.module}/router1_bgp_peers.yml"
+    filename = "../ansible/hosts/group_vars/tag_Name_router1.yml"
 }
 
 resource "local_file" "router2_bgp_peers_yml" {
@@ -86,7 +86,7 @@ resource "local_file" "router2_bgp_peers_yml" {
         ])
       })
     )
-    filename = "${path.module}/router2_bgp_peers.yml"
+    filename = "../ansible/hosts/group_vars/tag_Name_router2.yml"
 }
 
 resource "local_file" "router3_bgp_peers_yml" {
@@ -131,5 +131,5 @@ resource "local_file" "router3_bgp_peers_yml" {
         ])
       })
     )
-    filename = "${path.module}/router3_bgp_peers.yml"
+    filename = "../ansible/hosts/group_vars/tag_Name_router3.yml"
 }

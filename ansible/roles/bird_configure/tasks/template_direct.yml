@@ -1,8 +1,8 @@
 ---
-- name: Template per peer configs to /etc/bird/direct_default.conf
+- name: Template per peer configs to /etc/bird/direct.conf
   ansible.builtin.template:
     src: templates/direct.j2
-    dest: /etc/bird/direct_default.conf
+    dest: /etc/bird/direct.conf
     owner: bird
     group: bird
     mode: '0755'
